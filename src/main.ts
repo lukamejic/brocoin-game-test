@@ -26,7 +26,8 @@ async function main() {
   const server = getServerApp(dependencies);
   server.listen(process.env.PORT || 8080, async () => {
     console.log("Server is up and running!");
-    await bot.api.setWebhook(`https://${domain}/${secretPath}`);
+    await bot.api.setWebhook(`https://${domain}/test-bot`);
+    // await bot.api.setWebhook(`https://${domain}/${secretPath}`);
   });
 
   // TODO: Add close server on certain signals (gracefully)

@@ -11,6 +11,10 @@ export function getHealthRouter(dependencies: AppDependencies): express.Router {
   router.get("/", async (req: Request, res: Response) => {
     return res.status(200);
   });
+  router.get("/test-bot", async (req: Request, res: Response) => {
+    console.log(req);
+    return res.status(200);
+  });
 
   return router;
 }
