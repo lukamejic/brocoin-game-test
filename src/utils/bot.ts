@@ -29,10 +29,11 @@ bot.command("start", async (ctx) => {
       }, { upsert: true });
 
     // console.log("User doc id:", userDocId);
-    ctx.replyWithPhoto("https://img.etimg.com/thumb/msid-106967420,width-300,height-225,imgsize-478624,resizemode-75/my-life-with-the-walter-boys-season-2-see-everything-we-know-about-renewal-production-plot-and-more.jpg", {
-        "caption": `<b>Hi, ${ctx.from?.first_name}</b><br><p>Play the game now and become top players in the leaderboard!!!</p>`,
-        "parse_mode": "HTML"
-    })
+    ctx.reply("Hello!!! \nThis is a game bot");
+    // ctx.replyWithPhoto("https://img.etimg.com/thumb/msid-106967420,width-300,height-225,imgsize-478624,resizemode-75/my-life-with-the-walter-boys-season-2-see-everything-we-know-about-renewal-production-plot-and-more.jpg", {
+    //     "caption": `<b>Hi, ${ctx.from?.first_name}</b><br><p>Play the game now and become top players in the leaderboard!!!</p>`,
+    //     "parse_mode": "HTML"
+    // })
 });
 bot.command("play", async (ctx) => {
     await User.updateOne({ telegramId: ctx.from?.id.toString() }, {
