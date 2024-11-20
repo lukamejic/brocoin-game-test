@@ -47,7 +47,7 @@ bot.command("play", async (ctx) => {
         .row()
         .text("Leaderboard", "leaderboard")
         .text("About", "about");
-    ctx.replyWithGame("settle_mints_game", {
+    ctx.replyWithGame("brocoin_game_test", {
         reply_markup: keyboard,
         protect_content: true,
         disable_notification: true
