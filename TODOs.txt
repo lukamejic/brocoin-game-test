@@ -1,0 +1,53 @@
+HTTP Server
+- User !
+- NftToId
+- Login
+- EthLogin !
+- Generate JWT !
+- Verify JWT !
+- Swagger
+- Export Request Types to be used by the Frontend
+
+Server
+- Graceful shutdown
+
+Healthchecks
+- Actuall app
+- Availability of other services
+
+Mailing
+- Find a mailing service
+- Send out emails
+
+Hardhat
+- Deployment scripts
+- Compile scripts
+- Set-up scripts
+- Create tests
+
+Blockchain Events
+- Periodic checks for missed events
+
+Logging
+- Nice way to log events happening on the backend
+- Somehow to store those events happening on the 
+  backend in a suitable logging solution for all kinds of analyzing
+
+General stuff:
+- Load config using dotEnv !
+- Dependency injection !
+- Make sure the config is saved !
+
+MongoDB:
+- Set up a server !
+- Create connection !
+- Create schemas:
+  - Users !
+    - Email
+    - Connected Users
+    - Address
+    - Suspended
+  - NftToAddress !
+    - NftId
+    - Address 
+- Refactor tests to use helpers !

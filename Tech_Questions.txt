@@ -1,0 +1,13 @@
+- Should the number of NFTs someone owns be limited?
+  - If someone has more than 1 NFT, then potentially they could have more than 10 connected accounts (MAX_TIER_BENEFIT)
+    If they sell an NFT, which connected accounts should be suspended?
+
+- Sign up (web3) !
+- Sign in (web3) !
+- Update connected users !
+- Smart contracts !
+- On-chain event tracking !
+- IPFS for images
+- Minting (End to End)
+- OpenSea NFT Metadata
+- Mailing !
