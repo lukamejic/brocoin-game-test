@@ -75,9 +75,9 @@ bot.on("callback_query:data", async (ctx) => {
 });
 bot.on("callback_query:game_short_name", async (ctx) => {   
     const options: jwt.SignOptions = {
-        expiresIn: "1h"
+        expiresIn: "24h"
     };
-    const tokenLocal = jwt.sign(ctx.from.id.toString(), process.env.JWT_SECRET, options);
+    const tokenLocal = jwt.sign({telegramId: ctx.from.id.toString()}, process.env.JWT_SECRET, options);
     console.log("Token: " + tokenLocal);
     await ctx.answerCallbackQuery({ url: `https://${process.env.FRONTEND_URL}/?token=${tokenLocal}` });
 });
