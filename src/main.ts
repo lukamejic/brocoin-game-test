@@ -26,7 +26,7 @@ async function main() {
   const server = getServerApp(dependencies);
   server.listen(process.env.PORT || 8080, async () => {
     console.log("Server is up and running!");
-    await bot.api.setWebhook(`https://${domain}/health/test-bot`);
+    await bot.start();
     // await bot.api.setWebhook(`https://${domain}/${secretPath}`);
   });
 
