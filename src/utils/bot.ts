@@ -73,10 +73,11 @@ bot.on("callback_query:data", async (ctx) => {
         ctx.reply("About!!! \nThis is a game bot");
     }
 });
-bot.on("callback_query:game_short_name", async (ctx) => {    
-    const tokenLocal = jwt.sign(ctx.from.id.toString(), process.env.JWT_SECRET, {
-        expiresIn: "24h"
-      });
+bot.on("callback_query:game_short_name", async (ctx) => {   
+    const options: jwt.SignOptions = {
+        expiresIn: "1h"
+    };
+    const tokenLocal = jwt.sign(ctx.from.id.toString(), process.env.JWT_SECRET, options);
     console.log("Token: " + tokenLocal);
     await ctx.answerCallbackQuery({ url: `https://${process.env.FRONTEND_URL}/?token=${tokenLocal}` });
 });
