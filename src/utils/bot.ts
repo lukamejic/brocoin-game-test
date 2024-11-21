@@ -35,24 +35,24 @@ bot.command("start", async (ctx) => {
     //     "parse_mode": "HTML"
     // })
 });
-bot.command("play", async (ctx) => {
-    await User.updateOne({ telegramId: ctx.from?.id.toString() }, {
-        telegramId: ctx.from?.id.toString(),
-        name: ctx.from?.first_name || "" + " " + ctx.from?.last_name || "",
-        username: ctx.from?.username || ""
-      }, { upsert: true });
+// bot.command("play", async (ctx) => {
+//     await User.updateOne({ telegramId: ctx.from?.id.toString() }, {
+//         telegramId: ctx.from?.id.toString(),
+//         name: ctx.from?.first_name || "" + " " + ctx.from?.last_name || "",
+//         username: ctx.from?.username || ""
+//       }, { upsert: true });
 
-    // console.log("User doc id:", userDocId);
-    const keyboard = new InlineKeyboard().game("Play now!")
-        .row()
-        .text("Leaderboard", "leaderboard")
-        .text("About", "about");
-    ctx.replyWithGame("brocoin_test_app", {
-        reply_markup: keyboard,
-        protect_content: true,
-        disable_notification: true
-    });
-});
+//     // console.log("User doc id:", userDocId);
+//     const keyboard = new InlineKeyboard().game("Play now!")
+//         .row()
+//         .text("Leaderboard", "leaderboard")
+//         .text("About", "about");
+//     ctx.replyWithGame("brocoin_test_app", {
+//         reply_markup: keyboard,
+//         protect_content: true,
+//         disable_notification: true
+//     });
+// });
 bot.command("leaderboard", (ctx) => {
     ctx.reply("Leaderboard!!! \n1. User1\n2. User2\n3. User3");
 });
