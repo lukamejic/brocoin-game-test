@@ -47,7 +47,7 @@ bot.command("play", async (ctx) => {
         .row()
         .text("Leaderboard", "leaderboard")
         .text("About", "about");
-    ctx.replyWithGame("brocoin_game_test", {
+    ctx.replyWithGame("brocoin_test_app", {
         reply_markup: keyboard,
         protect_content: true,
         disable_notification: true
@@ -71,6 +71,8 @@ bot.on("callback_query:data", async (ctx) => {
         ctx.reply("Leaderboard!!! \n1. User1\n2. User2\n3. User3");
     } else if (data === "about") {
         ctx.reply("About!!! \nThis is a game bot");
+    }else{
+        console.log(data);
     }
 });
 bot.on("callback_query:game_short_name", async (ctx) => {   
