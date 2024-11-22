@@ -12,6 +12,7 @@ export interface IUser {
   rating: number;
   timePoints: number;
   dailyPoints: number;
+  timePointsRecord: number;
 }
 
 const UserSchema = new Schema<IUser>({
@@ -26,6 +27,7 @@ const UserSchema = new Schema<IUser>({
   rating: { type: Number, required: false },
   timePoints: { type: Number, required: false },
   dailyPoints: { type: Number, required: false },
+  timePointsRecord: { type: Number, required: false },
 });
 
 export const User = model<IUser>("User", UserSchema);

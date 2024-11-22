@@ -20,6 +20,7 @@ export function scheduler()
             }
             //TODO: clear all dailyPoints
             user.points = (user.points ?? 0) + (user.timePoints ?? 0) + (user.dailyPoints ?? 0);
+            user.timePointsRecord = ((user.timePointsRecord ?? 0) < (user.timePoints ?? 0)) ? (user.timePoints ?? 0) : (user.timePointsRecord ?? 0);
             user.timePoints = 0;
             user.dailyPoints = 0;
             await user.save();
