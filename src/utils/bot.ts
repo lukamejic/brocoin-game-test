@@ -21,15 +21,28 @@ export const bot = new Bot(token, {
 
 // Commands - Start, Play, Leaderboard, About, Help
 bot.command("start", async (ctx) => {
-
-    await User.updateOne({ telegramId: ctx.from?.id.toString() }, {
-        telegramId: ctx.from?.id.toString(),
-        name: ctx.from?.first_name || "" + " " + ctx.from?.last_name || "",
-        username: ctx.from?.username || ""
-      }, { upsert: true });
+    await User.updateOne({ telegramId: ctx.from?.id.toString() }, 
+        {
+            $set:
+            {
+                telegramId: ctx.from?.id.toString(),
+                name: ctx.from?.first_name || "" + " " + ctx.from?.last_name || "",
+                username: ctx.from?.username || ""        
+            }, 
+            $setOnInsert: 
+            { 
+                referredBy: ctx.match, 
+                createdAt: Date.now() 
+            }
+        }, { upsert: true });
 
     // console.log("User doc id:", userDocId);
-    ctx.reply("Hello!!! \nThis is a game bot");
+    // ctx.reply("Hello!!! \nThis is a game bot");
+    ctx.replyWithPhoto("https://www.brocoin.wtf/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbrocoin-logo-avatar.49c685eb.webp&w=1080&q=75" , 
+        {    
+            "caption": `<b>Hi, ${ctx.from?.first_name}</b><br><p>Play the game now and become top players in the leaderboard!!!</p>`,
+            "parse_mode": "HTML"
+        });
     // ctx.replyWithPhoto("https://img.etimg.com/thumb/msid-106967420,width-300,height-225,imgsize-478624,resizemode-75/my-life-with-the-walter-boys-season-2-see-everything-we-know-about-renewal-production-plot-and-more.jpg", {
     //     "caption": `<b>Hi, ${ctx.from?.first_name}</b><br><p>Play the game now and become top players in the leaderboard!!!</p>`,
     //     "parse_mode": "HTML"
@@ -53,35 +66,35 @@ bot.command("start", async (ctx) => {
 //         disable_notification: true
 //     });
 // });
-bot.command("leaderboard", (ctx) => {
-    ctx.reply("Leaderboard!!! \n1. User1\n2. User2\n3. User3");
-});
-bot.command("about", (ctx) => {
-    ctx.reply("About!!! \nThis is a game bot");
-});
-bot.command("help", (ctx) => {
-    ctx.reply(`
-    <b>Settle Mints Game Bot Help</b><br>
-    <p>Get in touch with the game support team.</p>
-  `, { parse_mode: "HTML" })
-});
-bot.on("callback_query:data", async (ctx) => {
-    const data = ctx.callbackQuery.data;
-    if (data === "leaderboard") {
-        ctx.reply("Leaderboard!!! \n1. User1\n2. User2\n3. User3");
-    } else if (data === "about") {
-        ctx.reply("About!!! \nThis is a game bot");
-    }else{
-        console.log(data);
-    }
-});
-bot.on("callback_query:game_short_name", async (ctx) => {   
-    const options: jwt.SignOptions = {
-        expiresIn: "24h"
-    };
-    const tokenLocal = jwt.sign({telegramId: ctx.from.id.toString()}, process.env.JWT_SECRET, options);
-    console.log("Token: " + tokenLocal);
-    await ctx.answerCallbackQuery({ url: `https://${process.env.FRONTEND_URL}/?token=${tokenLocal}` });
-});
+// bot.command("leaderboard", (ctx) => {
+//     ctx.reply("Leaderboard!!! \n1. User1\n2. User2\n3. User3");
+// });
+// bot.command("about", (ctx) => {
+//     ctx.reply("About!!! \nThis is a game bot");
+// });
+// bot.command("help", (ctx) => {
+//     ctx.reply(`
+//     <b>Settle Mints Game Bot Help</b><br>
+//     <p>Get in touch with the game support team.</p>
+//   `, { parse_mode: "HTML" })
+// });
+// bot.on("callback_query:data", async (ctx) => {
+//     const data = ctx.callbackQuery.data;
+//     if (data === "leaderboard") {
+//         ctx.reply("Leaderboard!!! \n1. User1\n2. User2\n3. User3");
+//     } else if (data === "about") {
+//         ctx.reply("About!!! \nThis is a game bot");
+//     }else{
+//         console.log(data);
+//     }
+// });
+// bot.on("callback_query:game_short_name", async (ctx) => {   
+//     const options: jwt.SignOptions = {
+//         expiresIn: "24h"
+//     };
+//     const tokenLocal = jwt.sign({telegramId: ctx.from.id.toString()}, process.env.JWT_SECRET, options);
+//     console.log("Token: " + tokenLocal);
+//     await ctx.answerCallbackQuery({ url: `https://${process.env.FRONTEND_URL}/?token=${tokenLocal}` });
+// });
 
 bot.catch((err) => console.error(err));
