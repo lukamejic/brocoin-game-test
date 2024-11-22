@@ -40,7 +40,7 @@ bot.command("start", async (ctx) => {
     // ctx.reply("Hello!!! \nThis is a game bot");
     ctx.replyWithPhoto("https://www.brocoin.wtf/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbrocoin-logo-avatar.49c685eb.webp&w=1080&q=75" , 
         {    
-            "caption": `<b>Hi, ${ctx.from?.first_name}</b><br><p>Play the game now and become top players in the leaderboard!!!</p>`,
+            "caption": `<b>Hi, ${ctx.from?.first_name}</b><p>Play the game now and become top players in the leaderboard!!!</p>`,
             "parse_mode": "HTML"
         });
     // ctx.replyWithPhoto("https://img.etimg.com/thumb/msid-106967420,width-300,height-225,imgsize-478624,resizemode-75/my-life-with-the-walter-boys-season-2-see-everything-we-know-about-renewal-production-plot-and-more.jpg", {
