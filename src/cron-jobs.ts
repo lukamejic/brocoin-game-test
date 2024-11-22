@@ -15,7 +15,7 @@ export function scheduler()
                 await User.updateOne({telegramId:user.referredBy},{$inc: {'referralPoints': 0.2 * user.points}})
             }
             //TODO: clear all dailyPoints
-            user.points = user.points + user.timePoints + user.dailyPoints;
+            user.points = (user.points ?? 0) + (user.timePoints ?? 0) + (user.dailyPoints ?? 0);
             user.timePoints = 0;
             user.dailyPoints = 0;
             await user.save();
