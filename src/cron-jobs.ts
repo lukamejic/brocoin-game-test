@@ -1,13 +1,25 @@
 import { scheduleJob } from "node-schedule";
+import { User } from "./database/models/User.js";
 
 export function scheduler()
 {
-  const job = scheduleJob('5 2 * * *', async function () {
-    try {      
+    //TODO: change frequency
+  const job = scheduleJob('*/5 * * * *', async function () {
+    try {    
         //TODO: clear all referralPoints
+        await User.updateMany({},{referralPoints:0});
+        
         //TODO: calculate referralPoints
-        //TODO: update all ratings 
-        //TODO: clear all dailyPoints
+        await Promise.all((await User.find()).map(async (user) => {
+            if(user.referredBy && user.points){
+                await User.updateOne({telegramId:user.referredBy},{$inc: {'referralPoints': 0.2 * user.points}})
+            }
+            //TODO: clear all dailyPoints
+            user.points = user.points + user.timePoints + user.dailyPoints;
+            user.timePoints = 0;
+            user.dailyPoints = 0;
+            await user.save();
+        }));
     } catch (e: any) {
       console.log("Cron job exception: ", e);
     }

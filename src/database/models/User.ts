@@ -10,6 +10,8 @@ export interface IUser {
   referralPoints: number;
   referredBy: string;
   rating: number;
+  timePoints: number;
+  dailyPoints: number;
 }
 
 const UserSchema = new Schema<IUser>({
@@ -22,6 +24,8 @@ const UserSchema = new Schema<IUser>({
   referralPoints: { type: Number, required: false },
   referredBy: { type: String, required: false},
   rating: { type: Number, required: false },
+  timePoints: { type: Number, required: false },
+  dailyPoints: { type: Number, required: false },
 });
 
 export const User = model<IUser>("User", UserSchema);
