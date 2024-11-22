@@ -38,7 +38,7 @@ bot.command("start", async (ctx) => {
 
     // console.log("User doc id:", userDocId);
     // ctx.reply("Hello!!! \nThis is a game bot");
-    ctx.replyWithPhoto("https://www.brocoin.wtf/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fbrocoin-logo-avatar.49c685eb.webp&w=1080&q=75" , 
+    ctx.replyWithPhoto("https://msg-group.net/wp-content/uploads/2024/11/brocoin-tapgame.png" , 
         {    
             "caption": `<b>Hi, ${ctx.from?.first_name}</b><p>Play the game now and become top players in the leaderboard!!!</p>`,
             "parse_mode": "HTML"
