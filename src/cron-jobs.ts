@@ -7,7 +7,11 @@ export function scheduler()
   const job = scheduleJob('*/5 * * * *', async function () {
     try {    
         //TODO: clear all referralPoints
-        await User.updateMany({},{referralPoints:0});
+        await User.updateMany({},
+          {"$set": {
+            "referralPoints": 0
+          }
+        });
         
         //TODO: calculate referralPoints
         await Promise.all((await User.find()).map(async (user) => {
