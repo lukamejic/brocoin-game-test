@@ -4,6 +4,7 @@ import { connectionHandling } from "./database/connection";
 import { generatePhoneNumberVerificationCode, generateUuid } from "./utils";
 import { webhookCallback } from "grammy";
 import { bot } from "./utils/bot";
+import {scheduler} from "./cron-jobs"
 
 const config = getConfig();
 const { openConnection, closeConnection } = connectionHandling(config);
@@ -12,13 +13,14 @@ const uuidGenerator: IUuidGenerator = {
   generatePhoneNumberVerificationCode: generatePhoneNumberVerificationCode
 }
 
+const cronJobs = scheduler();
+
 async function main() {
   await openConnection();
   const dependencies: AppDependencies = {
     config,
     uuidGenerator
   }
-
 
   const domain = String(process.env.DOMAIN);
   const secretPath = String(process.env.BOT_TOKEN);
