@@ -69,6 +69,15 @@ bot.command("start", async (ctx) => {
 //         disable_notification: true
 //     });
 // });
+bot.command("play", async (ctx) => {
+    // console.log("User doc id:", userDocId);
+    const keyboard = new InlineKeyboard().game("Play now!");
+    ctx.replyWithGame("brocoin_test_app", {
+        reply_markup: keyboard,
+        protect_content: true,
+        disable_notification: true
+    });
+});
 // bot.command("leaderboard", (ctx) => {
 //     ctx.reply("Leaderboard!!! \n1. User1\n2. User2\n3. User3");
 // });
