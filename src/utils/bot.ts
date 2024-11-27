@@ -38,12 +38,15 @@ bot.command("start", async (ctx) => {
 
     // console.log("User doc id:", userDocId);
     // ctx.reply("Hello!!! \nThis is a game bot");
-    const keyboard = new InlineKeyboard().game("Play now!");
     ctx.replyWithPhoto("https://msg-group.net/wp-content/uploads/2024/11/brocoin-tapgame.png" , 
         {    
             caption: `<b>Hi, ${ctx.from?.first_name}</b>\r\nPlay the game now and become top player in the leaderboard!!!`,
             parse_mode: "HTML",
-            reply_markup: keyboard,
+            reply_markup: {
+                inline_keyboard: [
+                    [ { text: "Play now!", web_app: { url: process.env.TELEGRAM_GAME_URL } } ],
+                ]
+            },
             protect_content: true
         });
     // ctx.replyWithPhoto("https://img.etimg.com/thumb/msid-106967420,width-300,height-225,imgsize-478624,resizemode-75/my-life-with-the-walter-boys-season-2-see-everything-we-know-about-renewal-production-plot-and-more.jpg", {
