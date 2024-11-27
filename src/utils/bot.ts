@@ -46,7 +46,8 @@ bot.command("start", async (ctx) => {
                 inline_keyboard: [
                     [ { text: "Play now!", web_app: { url: process.env.TELEGRAM_GAME_URL } } ],
                 ]
-            }
+            }, 
+            protect_content:true
         });
     // ctx.replyWithPhoto("https://img.etimg.com/thumb/msid-106967420,width-300,height-225,imgsize-478624,resizemode-75/my-life-with-the-walter-boys-season-2-see-everything-we-know-about-renewal-production-plot-and-more.jpg", {
     //     "caption": `<b>Hi, ${ctx.from?.first_name}</b><br><p>Play the game now and become top players in the leaderboard!!!</p>`,
@@ -71,15 +72,15 @@ bot.command("start", async (ctx) => {
 //         disable_notification: true
 //     });
 // });
-bot.command("play", async (ctx) => {
-    // console.log("User doc id:", userDocId);
-    const keyboard = new InlineKeyboard().game("Play now!");
-    ctx.replyWithGame("brocoin_test_app", {
-        reply_markup: keyboard,
-        protect_content: true,
-        disable_notification: true
-    });
-});
+// bot.command("play", async (ctx) => {
+//     // console.log("User doc id:", userDocId);
+//     const keyboard = new InlineKeyboard().game("Play now!");
+//     ctx.replyWithGame("brocoin_test_app", {
+//         reply_markup: keyboard,
+//         protect_content: true,
+//         disable_notification: true
+//     });
+// });
 // bot.command("leaderboard", (ctx) => {
 //     ctx.reply("Leaderboard!!! \n1. User1\n2. User2\n3. User3");
 // });
